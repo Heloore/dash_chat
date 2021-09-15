@@ -15,17 +15,17 @@ class MessageContainer extends StatelessWidget {
   /// [messageTextBuilder] function takes a function with this
   /// structure [Widget Function(String)] to render the text inside
   /// the container.
-  final Widget Function(String?, [ChatMessage])? messageTextBuilder;
+  final Widget Function(String?)? messageTextBuilder;
 
   /// [messageImageBuilder] function takes a function with this
   /// structure [Widget Function(String)] to render the image inside
   /// the container.
-  final Widget Function(String?, [ChatMessage])? messageImageBuilder;
+  final Widget Function(String?)? messageImageBuilder;
 
   /// [messageTimeBuilder] function takes a function with this
   /// structure [Widget Function(String)] to render the time text inside
   /// the container.
-  final Widget Function(String, [ChatMessage])? messageTimeBuilder;
+  final Widget Function(String)? messageTimeBuilder;
 
   /// Provides a custom style to the message container
   /// takes [BoxDecoration]
@@ -144,7 +144,6 @@ class MessageContainer extends StatelessWidget {
             messageTimeBuilder?.call(
                   timeFormat?.format(message.createdAt) ??
                       DateFormat('HH:mm:ss').format(message.createdAt),
-                  message,
                 ) ??
                 Padding(
                   padding: EdgeInsets.only(top: 5.0),
@@ -166,7 +165,7 @@ class MessageContainer extends StatelessWidget {
   }
 
   Widget _buildMessageText() {
-    return messageTextBuilder?.call(message.text, message) ??
+    return messageTextBuilder?.call(message.text) ??
         ParsedText(
           parse: parsePatterns,
           text: message.text!,
@@ -179,7 +178,7 @@ class MessageContainer extends StatelessWidget {
 
   Widget _buildMessageImage() {
     if (message.image != null) {
-      return messageImageBuilder?.call(message.image, message) ??
+      return messageImageBuilder?.call(message.image) ??
           Padding(
             padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: FadeInImage.memoryNetwork(
