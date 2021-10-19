@@ -22,6 +22,7 @@ class MessageListView extends StatefulWidget {
   final BoxDecoration? messageContainerDecoration;
   final List<MatchText> parsePatterns;
   final ScrollController? scrollController;
+  final ScrollPhysics? scrollPhysics;
   final EdgeInsets messageContainerPadding;
   final Function? changeVisible;
   final bool? visible;
@@ -47,6 +48,7 @@ class MessageListView extends StatefulWidget {
     this.messageContainerPadding =
         const EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
     this.scrollController,
+    this.scrollPhysics,
     this.parsePatterns = const [],
     this.messageContainerDecoration,
     required this.messages,
@@ -135,6 +137,7 @@ class _MessageListViewState extends State<MessageListView> {
                 ListView.builder(
                   controller: widget.scrollController,
                   shrinkWrap: true,
+                  physics: widget.scrollPhysics,
                   reverse: widget.inverted,
                   itemCount: widget.messages.length,
                   itemBuilder: (context, i) {

@@ -274,11 +274,15 @@ class DashChat extends StatefulWidget {
   /// return BoxDecoration
   final BoxDecoration Function(ChatMessage, bool?)? messageDecorationBuilder;
 
+  ///Sets the physics for chat's scroll
+  final ScrollPhysics? scrollPhysics;
+
   late ScrollToBottomStyle scrollToBottomStyle;
 
   DashChat({
     Key? key,
     ScrollToBottomStyle? scrollToBottomStyle,
+    this.scrollPhysics,
     this.avatarMaxSize = 30.0,
     this.inputTextDirection = TextDirection.ltr,
     this.inputToolbarMargin = const EdgeInsets.all(0.0),
@@ -482,6 +486,7 @@ class DashChatState extends State<DashChat> {
                     : MainAxisAlignment.end,
                 children: <Widget>[
                   MessageListView(
+                      scrollPhysics: widget.scrollPhysics,
                       avatarMaxSize: widget.avatarMaxSize,
                       messagePadding: widget.messagePadding,
                       constraints: constraints,
