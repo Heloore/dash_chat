@@ -460,7 +460,7 @@ class DashChatState extends State<DashChat> {
           });
         }
       } else if (topReached) {
-        widget.onLoadEarlier!();
+        widget.onLoadEarlier?.call();
       }
     });
   }
