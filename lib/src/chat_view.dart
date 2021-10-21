@@ -160,7 +160,7 @@ class DashChat extends StatefulWidget {
   final List<Widget> trailing;
 
   /// sendButtonBuilder will override the the default [IconButton].
-  final Widget Function(Function)? sendButtonBuilder;
+  final Widget Function(VoidCallback)? sendButtonBuilder;
 
   /// Style for the [TextField].
   final TextStyle? inputTextStyle;
